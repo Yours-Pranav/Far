@@ -3,17 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plinko Game</title>
+    <title>Plinko Game - Farcaster</title>
     
-    <!-- Farcaster Frame Meta Tags -->
-    <meta property="fc:frame" content="vNext">
-    <meta property="fc:frame:image" content="https://your-domain.vercel.app/preview.png">
-    <meta property="fc:frame:button:1" content="🎯 Play Plinko">
-    <meta property="fc:frame:button:1:action" content="link">
-    <meta property="fc:frame:button:1:target" content="https://your-domain.vercel.app">
-    <meta property="og:image" content="https://your-domain.vercel.app/preview.png">
-    <meta property="og:title" content="Plinko Game - Win USDC">
-    <meta property="og:description" content="Drop balls, win USDC prizes up to $1.00!">
+    <!-- Farcaster Mini App SDK -->
+    <script src="https://sdk.farcaster.xyz/v1.0.0" defer></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
@@ -62,7 +55,7 @@
             opacity: 0.7;
             color: #a0a0ff;
         }
-      
+
         .farcaster-info {
             background: rgba(139, 92, 246, 0.2);
             border: 1px solid rgba(139, 92, 246, 0.3);
@@ -82,7 +75,6 @@
             color: #c471ed;
             font-weight: 600;
         }
-
         .farcaster-badge {
             background: linear-gradient(135deg, #8b5cf6, #ec4899);
             padding: 4px 12px;
@@ -125,7 +117,8 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-      .game-board {
+
+        .game-board {
             background: linear-gradient(145deg, rgba(18, 18, 39, 0.9), rgba(30, 30, 60, 0.7));
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
@@ -176,7 +169,6 @@
             padding: 0 10px;
             margin-bottom: 20px;
         }
-
         .btn {
             padding: 14px 20px;
             border: none;
@@ -254,7 +246,6 @@
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
         }
-
         .hidden {
             display: none;
         }
@@ -264,14 +255,13 @@
     <div class="game-container">
         <div class="header">
             <h1 class="title">PLINKO</h1>
-            <p class="subtitle">Drop balls • Win USDC • Pure luck ✨</p>
+            <p class="subtitle">Drop balls • Win USDC • Pure luck</p>
         </div>
 
-        <!-- Farcaster User Info -->
         <div class="farcaster-info" id="farcasterInfo">
             <div class="farcaster-user">
                 <span id="farcasterUsername">Connected via Farcaster</span>
-                <span class="farcaster-badge">⚡ Frame</span>
+                <span class="farcaster-badge">Frame</span>
             </div>
         </div>
 
@@ -307,14 +297,13 @@
         </div>
 
         <div class="controls">
-            <button class="btn btn-primary" id="dropBallBtn">🎯 DROP BALL</button>
-            <button class="btn btn-secondary" id="getFreeTicketsBtn">🎟️ GET FREE TICKETS</button>
-            <button class="btn btn-claim hidden" id="claimBtn">💰 CLAIM $<span id="claimAmount">0.00</span> USDC</button>
+            <button class="btn btn-primary" id="dropBallBtn">DROP BALL</button>
+            <button class="btn btn-secondary" id="getFreeTicketsBtn">GET FREE TICKETS</button>
+            <button class="btn btn-claim hidden" id="claimBtn">CLAIM $<span id="claimAmount">0.00</span> USDC</button>
         </div>
     </div>
 
     <script>
-        // Farcaster Frame Context
         let farcasterContext = {
             fid: null,
             username: null,
@@ -322,11 +311,9 @@
             verified: false
         };
 
-        // Initialize Farcaster context
         function initFarcaster() {
-            console.log('🎯 Initializing Farcaster Frame...');
+            console.log('Initializing Farcaster context...');
             
-            // Check URL parameters for Farcaster data
             const urlParams = new URLSearchParams(window.location.search);
             const fid = urlParams.get('fid');
             const username = urlParams.get('username');
@@ -337,11 +324,9 @@
                 farcasterContext.verified = true;
                 updateFarcasterUI();
             }
-            
-            // Listen for Farcaster Frame messages
             window.addEventListener('message', (event) => {
                 if (event.data.type === 'farcaster-frame') {
-                    console.log('📬 Received Farcaster data:', event.data);
+                    console.log('Received Farcaster data:', event.data);
                     farcasterContext = {
                         fid: event.data.fid,
                         username: event.data.username,
@@ -351,8 +336,6 @@
                     updateFarcasterUI();
                 }
             });
-            
-            console.log('✅ Farcaster initialized');
         }
 
         function updateFarcasterUI() {
@@ -364,7 +347,7 @@
 
         class PlinkoGame {
             constructor() {
-                console.log('🎯 Initializing Plinko Game...');
+                console.log('Initializing Plinko Game...');
                 
                 this.canvas = document.getElementById('gameCanvas');
                 if (!this.canvas) return;
@@ -388,7 +371,7 @@
                 this.updateStats();
                 this.start();
                 
-                console.log('✅ Game initialized');
+                console.log('Game initialized successfully');
             }
 
             setupCanvas() {
@@ -400,11 +383,8 @@
                 this.canvas.height = this.height;
                 this.canvas.style.width = this.width + 'px';
                 this.canvas.style.height = this.height + 'px';
-                
-                console.log('Canvas setup:', this.width, 'x', this.height);
-            }
-
-            createPegs() {
+                    }
+        createPegs() {
                 this.pegs = [];
                 const rows = 8;
                 const spacing = Math.floor(this.width / 10);
@@ -422,7 +402,6 @@
                         });
                     }
                 }
-                console.log('Created', this.pegs.length, 'pegs');
             }
 
             setupEvents() {
@@ -433,10 +412,9 @@
 
             dropBall() {
                 if (this.tickets <= 0) {
-                    showNotification('No tickets! Get free ones! 🎟️', 'info');
+                    showNotification('No tickets! Get free ones!', 'info');
                     return;
-                }
-
+                    }
                 this.tickets--;
                 this.ballsDropped++;
                 
@@ -462,7 +440,7 @@
             getFreeTickets() {
                 this.tickets += 3;
                 this.updateStats();
-                showNotification('Got 3 free tickets! 🎟️', 'info');
+                showNotification('Got 3 free tickets!', 'info');
             }
 
             claimWinnings() {
@@ -471,19 +449,17 @@
                     return;
                 }
 
-                showNotification(`Claiming $${this.totalWinnings.toFixed(2)} USDC... 🚀`, 'info');
-                console.log('💰 Claim triggered for FID:', farcasterContext.fid);
+                showNotification(`Claiming $${this.totalWinnings.toFixed(2)} USDC...`, 'info');
+                console.log('Claim triggered for FID:', farcasterContext.fid);
                 
-                // TODO: Call smart contract to claim USDC
                 setTimeout(() => {
-                    showNotification('Claim successful! Check your wallet 🎉', 'win');
+                    showNotification('Claim successful! Check your wallet', 'win');
                     this.totalWinnings = 0;
                     this.updateStats();
                     document.getElementById('claimBtn').classList.add('hidden');
                 }, 2000);
             }
-
-            updateBalls() {
+        updateBalls() {
                 for (let i = this.balls.length - 1; i >= 0; i--) {
                     const ball = this.balls[i];
                     
@@ -510,8 +486,9 @@
                             ball.vy = Math.sin(angle) * speed;
                             ball.vx += (Math.random() - 0.5) * 2;
                         }
-      }
-                  if (ball.x < ball.radius || ball.x > this.width - ball.radius) {
+                    }
+                    
+                    if (ball.x < ball.radius || ball.x > this.width - ball.radius) {
                         ball.vx *= -0.8;
                         ball.x = Math.max(ball.radius, Math.min(this.width - ball.radius, ball.x));
                     }
@@ -585,7 +562,8 @@
                     this.ctx.stroke();
                 }
             }
-          start() {
+
+            start() {
                 if (this.isRunning) return;
                 this.isRunning = true;
                 this.gameLoop();
@@ -606,29 +584,31 @@
                 const btn = document.getElementById('dropBallBtn');
                 if (btn) btn.disabled = this.tickets <= 0;
             }
-        }
-
-        function showNotification(message, type) {
-            const existing = document.querySelectorAll('.notification');
-            existing.forEach(n => n.remove());
-            
-            const notif = document.createElement('div');
-            notif.className = `notification ${type}`;
-            notif.textContent = message;
-            document.body.appendChild(notif);
-            
-            setTimeout(() => {
-                if (notif.parentNode) document.body.removeChild(notif);
-            }, 3000);
-        }
-
-        // Initialize
+                           }
+        // Initialize everything
         window.addEventListener('load', function() {
-            console.log('📄 Plinko Frame loaded');
+            console.log('Page loaded');
             initFarcaster();
+            
             setTimeout(() => {
                 window.game = new PlinkoGame();
-            }, 100);
+                console.log('Game created');
+                
+                // Notify Farcaster SDK that app is ready
+                if (typeof sdk !== 'undefined' && sdk.actions && sdk.actions.ready) {
+                    sdk.actions.ready();
+                    console.log('Farcaster SDK ready() called');
+                } else {
+                    console.warn('Farcaster SDK not available');
+                    // Fallback - try accessing global sdk after delay
+                    setTimeout(() => {
+                        if (window.sdk && window.sdk.actions && window.sdk.actions.ready) {
+                            window.sdk.actions.ready();
+                            console.log('Farcaster SDK ready() called (delayed)');
+                        }
+                    }, 500);
+                }
+            }, 200);
         });
     </script>
 </body>
