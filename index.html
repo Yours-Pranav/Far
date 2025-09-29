@@ -393,16 +393,22 @@
             }
 
             setupCanvas() {
+                const rect = this.canvas.getBoundingClientRect();
+                this.width = Math.min(320, rect.width || window.innerWidth - 50);
+                this.height = 350;
+                
                 this.canvas.width = this.width;
                 this.canvas.height = this.height;
                 this.canvas.style.width = this.width + 'px';
                 this.canvas.style.height = this.height + 'px';
+                
+                console.log('Canvas setup:', this.width, 'x', this.height);
             }
 
             createPegs() {
                 this.pegs = [];
                 const rows = 8;
-                const spacing = 35;
+                const spacing = Math.floor(this.width / 10);
                 
                 for (let row = 0; row < rows; row++) {
                     const pegsInRow = 3 + row;
@@ -412,11 +418,12 @@
                     for (let col = 0; col < pegsInRow; col++) {
                         this.pegs.push({
                             x: startX + col * spacing + offsetX,
-                            y: 60 + row * 45,
+                            y: 60 + row * 38,
                             radius: 5
                         });
                     }
                 }
+                console.log('Created', this.pegs.length, 'pegs');
             }
 
             setupEvents() {
@@ -549,10 +556,4 @@
                 });
                 
                 this.balls.forEach(ball => {
-                    this.ctx.strokeStyle = ball.color + '80';
-                    this.ctx.lineWidth = ball.radius;
-                    this.ctx.lineCap = 'round';
-                    for (let i = 0; i < ball.trail.length - 1; i++) {
-                        this.ctx.beginPath();
-                        this.ctx.moveTo(ball.trail[i].x, ball.trail[i].y);
-                        this.ctx.lineTo(ball.trail[i + 1].x, ball.
+                    this.ctx.strokeSt
