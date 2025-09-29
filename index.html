@@ -407,13 +407,14 @@
             }
 
             setupCanvas() {
-                const rect = this.canvas.getBoundingClientRect();
-                this.width = Math.min(320, rect.width || window.innerWidth - 50);
+                // Using fixed dimensions to prevent issues in constrained environments
+                this.width = 300; 
                 this.height = 350;
                 
                 this.canvas.width = this.width;
                 this.canvas.height = this.height;
-                this.canvas.style.width = this.width + 'px';
+                this.canvas.style.width = '100%'; // Let CSS handle 100% width visually
+                this.canvas.style.maxWidth = this.width + 'px'; // Max width constraint
                 this.canvas.style.height = this.height + 'px';
                 
                 console.log('Canvas setup:', this.width, 'x', this.height);
@@ -422,7 +423,8 @@
             createPegs() {
                 this.pegs = [];
                 const rows = 8;
-                const spacing = Math.floor(this.width / 10);
+                // Calculate spacing based on fixed internal width
+                const spacing = Math.floor(this.width / 10); 
                 
                 for (let row = 0; row < rows; row++) {
                     const pegsInRow = 3 + row;
@@ -554,5 +556,4 @@
             }
 
             updateStats() {
-                document.getElementById('ticketCount').textContent = this.tickets;
-                document.getElementById('totalWinnings').textContent = `$${this.tota
+         
