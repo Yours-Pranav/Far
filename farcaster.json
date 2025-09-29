@@ -1,0 +1,18 @@
+{
+  "accountAssociation": {
+    "header": "REPLACE_WITH_YOUR_HEADER",
+    "payload": "REPLACE_WITH_YOUR_PAYLOAD",
+    "signature": "REPLACE_WITH_YOUR_SIGNATURE"
+  },
+  "frame": {
+    "version": "1",
+    "name": "Plinko Game",
+    "iconUrl": "https://far-three.vercel.app/icon.png",
+    "homeUrl": "https://far-three.vercel.app",
+    "imageUrl": "https://far-three.vercel.app/preview.png",
+    "buttonTitle": "Play Plinko",
+    "splashImageUrl": "https://far-three.vercel.app/splash.png",
+    "splashBackgroundColor": "#0f0f23",
+    "webhookUrl": "https://far-three.vercel.app/api/webhook"
+  }
+}
