@@ -1,8 +1,8 @@
 {
   "accountAssociation": {
-    "header": "REPLACE_WITH_YOUR_HEADER",
-    "payload": "REPLACE_WITH_YOUR_PAYLOAD",
-    "signature": "REPLACE_WITH_YOUR_SIGNATURE"
+    "header": "eyJmaWQiOjMyMjIxNiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweGRENzhhMkQyNkRjRTU1NjcxMmI4ZWQ0Q0MzYUIzRTI4RTVhMUQzOEEifQ",
+    "payload": "eyJkb21haW4iOiJmYXItdGhyZWUudmVyY2VsLmFwcCJ9",
+    "signature": "MHgxY2ZmNDMyZjMxZGJkN2JkNWZjZjBiYzQzOGM4MzdkMDUyYzE3NTdhZTg4MTBhMzZmNDVmYmNlYWJjZjBhMzliM2QwMzg3N2Y5ZDY3MDk0OGNkZDYxOTQ0MjRjOGYyOTVjNThiNDQ4MTFkZmQ4Nzk5NDEzZmY5YTljMzM3ZDFjZTFi"
   },
   "frame": {
     "version": "1",
@@ -12,7 +12,6 @@
     "imageUrl": "https://far-three.vercel.app/preview.png",
     "buttonTitle": "Play Plinko",
     "splashImageUrl": "https://far-three.vercel.app/splash.png",
-    "splashBackgroundColor": "#0f0f23",
-    "webhookUrl": "https://far-three.vercel.app/api/webhook"
+    "splashBackgroundColor": "#0f0f23"
   }
 }
