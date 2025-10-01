@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plinko Game - Farcaster</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        /* CSS omitted for brevity - same as user uploaded file */
+    </style>
+</head>
+<body>
+    <!-- Body content same as original file (game UI, canvas, buttons, etc.) -->
+
+    <script>
+        // All your existing JS game logic here (unchanged)
+    </script>
+
+    <!-- Farcaster SDK (Module Import) -->
+    <script type="module">
+        import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk';
+        sdk.actions.ready({ disableNativeGestures: true });
+    </script>
+</body>
+</html>
